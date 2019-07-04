@@ -27,7 +27,7 @@ function onEdit(e: GoogleAppsScript.Events.SheetsOnEdit) {
 	}
 	const newOrDelete = e.oldValue?"編集":"追加";
 
-	const content = `お買い物リストが${newOrDelete}されました。\n${editedYear}/${editedDay} ${editedProductName} ${editedPayment}`
+	const content = `\nお買い物リストが【${newOrDelete}】された。\n${editedRow}行目 ${editedYear}/${editedDay} ${editedProductName} ${editedPayment}`
 
 	const options: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
 		"method"  : "post",
