@@ -16,17 +16,18 @@ function onEdit(e: GoogleAppsScript.Events.SheetsOnEdit) {
 	const editedSheet = e.source.getActiveSheet();
 	const editedRow = e.range.getRow();
 
-	const editedYear = editedSheet.getRange(editedRow, 1).getValue().toString();
-	const editedDay = editedSheet.getRange(editedRow, 2).getValue().toString();
-	const editedProductName = editedSheet.getRange(editedRow, 3).getValue().toString();
-	const editedPayment = editedSheet.getRange(editedRow, 4).getValue().toString();
+	const editedYear = editedSheet.getRange(editedRow, 1).getDisplayValue();
+	const editedDay = editedSheet.getRange(editedRow, 2).getDisplayValue()
+	const editedProductName = editedSheet.getRange(editedRow, 3).getDisplayValue();
+	const editedPayment = editedSheet.getRange(editedRow, 4).getDisplayValue();
 
 	// 編集行の何かしらがまだ埋まっていない場合、通知はしないで終了
 	if(!editedYear || !editedDay || !editedProductName || !editedPayment) {
 		return;
 	}
+	const newOrDelete = e.oldValue?"編集":"追加";
 
-	const content = `お買い物リストに追加または変更されました。\n${editedYear}年${editedDay} ${editedProductName} ${editedPayment}`
+	const content = `お買い物リストが${newOrDelete}されました。\n${editedYear}/${editedDay} ${editedProductName} ${editedPayment}`
 
 	const options: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
 		"method"  : "post",
