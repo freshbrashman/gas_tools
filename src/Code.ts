@@ -35,7 +35,7 @@ function onEdit(e: GoogleAppsScript.Events.SheetsOnEdit) {
                     `${editedRow}行目 ${editedYear}/${editedDay} ${editedProductName} ${editedPayment}\n` +
                     `${editedRowUrl}`;
 
-    // Lineへの通知処理2
+    // Lineへの通知処理
     const options: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
         headers : {Authorization : "Bearer " + token},
         method  : "post",
